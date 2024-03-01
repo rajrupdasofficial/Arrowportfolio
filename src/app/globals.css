@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Track */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #57f10f, #76f70c);
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #3eec1b, #68e404);
+}
+
+/* Button (top and bottom buttons) */
+::-webkit-scrollbar-button {
+  display: none;
+}
