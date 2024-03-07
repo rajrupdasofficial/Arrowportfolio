@@ -6,8 +6,8 @@ import TransitionProvider from "@/components/transitionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Welcome to arrowfig where everything is possible",
-  description: "We are a unified technology company",
+  title: "Welcome to Webstackpros where everything is possible",
+  description: "Technological stack for professional customers",
 };
 
 export default function RootLayout({ children }) {
