@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://www.webstackpros.net/sitemap.xml
