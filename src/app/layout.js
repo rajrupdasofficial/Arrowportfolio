@@ -40,6 +40,7 @@ export const metadata = {
     title: websiteMetadata.title,
     images: [websiteMetadata.socialBanner],
   },
+
 };
 
 export default function RootLayout({ children }) {
