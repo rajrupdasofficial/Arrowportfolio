@@ -27,15 +27,18 @@ const AboutPage = () => {
             <h1 className="font-bold text-2xl">BIOGRAPHY</h1>
             {/* bio paragraph */}
             <p className="text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium repudiandae exercitationem, aut impedit temporibus
-              reiciendis rerum vero aliquam? Animi vitae dolore temporibus
-              corrupti similique possimus nostrum qui, asperiores facilis
-              aperiam error ipsum? Maxime, sequi similique! Possimus
-              necessitatibus eligendi dolorum neque alias repellat, beatae in.
+            Welcome to WebStackPros, your premier destination for cutting-edge technology solutions tailored to elevate your digital presence. At WebStackPros, we are more than just a technology company - we are your trusted partner in navigating the dynamic landscape of the digital world.
+
+With a passion for innovation and a commitment to excellence, we specialize in providing comprehensive web development, design, and digital marketing services to businesses of all sizes. Our mission is to empower organizations to harness the full potential of technology to achieve their goals and stay ahead of the competition.
             </p>
+            <hr />
+            <h2 className="font-bold text-2xl">Our Services:</h2>
             <span className="italic">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
+            Web Development: From responsive websites to complex web applications, we create engaging and user-friendly digital experiences that captivate audiences and drive results.
+
+Design Services: Our team of talented designers specializes in creating visually stunning designs that reflect your brand identity and resonate with your target audience.
+
+Digital Marketing: Unlock the full potential of your online presence with our comprehensive digital marketing services, including SEO, PPC, social media marketing, and more.
             </span>
             {/* SVG SIGN */}
             <div className="self-end">
@@ -201,7 +204,7 @@ const AboutPage = () => {
                   </div>
                   {/* job description */}
                   <div className="p-3 text-sm italic">
-                    Ecommerce Project for Mitali IT opc
+                    Ecommerce Project for KPN
                   </div>
                   {/* job date */}
                   <div className="p-3 text-red-400 text-sm font-semibold">
@@ -209,7 +212,7 @@ const AboutPage = () => {
                   </div>
                   {/* job company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    Mitali IT opc
+                    KPN
                   </div>
                 </div>
                 {/* center */}
@@ -239,19 +242,19 @@ const AboutPage = () => {
                 <div className="w-1/3">
                   {/* job title */}
                   <div className="bg-whote p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Ecommerce Project
+                    Android recharge app Project
                   </div>
                   {/* job description */}
                   <div className="p-3 text-sm italic">
-                    Ecommerce Project for Mitali IT opc
+                  Android recharge app for Earn to pay
                   </div>
                   {/* job date */}
                   <div className="p-3 text-red-400 text-sm font-semibold">
-                    09/2021-12/2021
+                    09/2022-12/2022
                   </div>
                   {/* job company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    Mitali IT opc
+                    Earn to pay
                   </div>
                 </div>
               </div>
@@ -261,19 +264,19 @@ const AboutPage = () => {
                 <div className="w-1/3 bg-blue-200">
                   {/* job title */}
                   <div className="bg-whote p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Ecommerce Project
+                    AI Android application
                   </div>
                   {/* job description */}
                   <div className="p-3 text-sm italic">
-                    Ecommerce Project for Mitali IT opc
+                    AI android Application
                   </div>
                   {/* job date */}
                   <div className="p-3 text-red-400 text-sm font-semibold">
-                    09/2021-12/2021
+                    09/2023-12/2023
                   </div>
                   {/* job company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    Mitali IT opc
+                    
                   </div>
                 </div>
                 {/* center */}
