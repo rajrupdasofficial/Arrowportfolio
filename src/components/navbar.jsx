@@ -87,10 +87,10 @@ const NavBar = () => {
         <Link href="https://github.com/RajrupDasid">
           <Image src="/github.png" width={24} height={24} alt="github" />
         </Link>
-        <Link href="https://github.com/RajrupDasid">
-          <Image src="/dribble.png" width={24} height={24} alt="github" />
+        <Link href="https://www.facebook.com/people/Webstackpros/61558804966278/">
+          <Image src="/facebook.png" width={24} height={24} alt="github" />
         </Link>
-        <Link href="https://github.com/RajrupDasid">
+        <Link href="https://www.instagram.com/sandipdasnew/">
           <Image src="/instagram.png" width={24} height={24} alt="github" />
         </Link>
         <Link href="https://github.com/RajrupDasid">
