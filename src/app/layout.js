@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL("https://www.webstackpros.net"),
-  title: "Webstackpros.net",
+  title: "Webstackpros",
   description:
-    "We are a team of professionals here to turn your digital dreams into reality. You imagine it, and we'll develop it. Thank you for visiting our site.",
+    "innovative Tech Solutions for a connected world",
   other: { "p:domain_verify": "7f562b83bb6b61abb8204072b470b756" },
   openGraph: {
     title: websiteMetadata.title,
