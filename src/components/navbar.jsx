@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const links = [
   { url: "/", title: "Home" },
   { url: "/about", title: "About" },
+  {url:"/services",title:"Services"},
   { url: "/portfolio", title: "Portfolio" },
   { url: "/contact", title: "Contact" },
 ];
@@ -84,20 +85,14 @@ const NavBar = () => {
       </div>
       {/* social */}
       <div className="hidden md:flex gap-4 w-1/3 justify-center">
-        <Link href="https://github.com/RajrupDasid">
-          <Image src="/github.png" width={24} height={24} alt="github" />
+        <Link href="https://www.facebook.com/profile.php?id=61558804966278">
+          <Image src="/facebook.png" width={24} height={24} alt="facebook" />
         </Link>
-        <Link href="https://www.facebook.com/people/Webstackpros/61558804966278/">
-          <Image src="/facebook.png" width={24} height={24} alt="github" />
+        <Link href="https://www.instagram.com/webstackprosofficial/">
+          <Image src="/instagram.png" width={24} height={24} alt="instagram" />
         </Link>
-        <Link href="https://www.instagram.com/sandipdasnew/">
-          <Image src="/instagram.png" width={24} height={24} alt="github" />
-        </Link>
-        <Link href="https://github.com/RajrupDasid">
-          <Image src="/pinterest.png" width={24} height={24} alt="github" />
-        </Link>
-        <Link href="https://github.com/RajrupDasid">
-          <Image src="/linkedin.png" width={24} height={24} alt="github" />
+        <Link href="https://in.linkedin.com/company/webstackpros-net">
+          <Image src="/linkedin.png" width={24} height={24} alt="linkedin" />
         </Link>
       </div>
       {/* responsive menu */}
