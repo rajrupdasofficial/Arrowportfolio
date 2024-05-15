@@ -5,6 +5,7 @@ import ClarityMS from "./Clarity";
 import TransitionProvider from "@/components/transitionProvider";
 import GoogleAnalytics from "./GoogleAnalytics";
 import { websiteMetadata } from "../../util/WebsiteMetaData";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,6 +58,8 @@ export default function RootLayout({ children }) {
         ) : null}
 
         <ClarityMS />
+        <hr className="border-gray-400 border-1 my-4"/>
+        <Footer/>
       </body>
     </html>
   );

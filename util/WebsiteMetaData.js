@@ -8,7 +8,7 @@ export const websiteMetadata = {
   theme: "system", // system, dark or light
   siteUrl: "https://www.webstackpros.net", // your website URL
   siteLogo: "/favicon.ico",
-  socialBanner: "/social-banner.png", // add social banner in the public folder
+  socialBanner: "/heros2.png", // add social banner in the public folder
   email: "websatckprosnetwork@gmail.com",
   github: "https://github.com/RajrupDasid",
   twitter: "https://twitter.com/webstackprosnetwork",
