@@ -6,9 +6,9 @@ const LoginPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <form action={hadleGithubLogin}>
+        {/* <form action={hadleGithubLogin}>
           <button className={styles.github}>Login with Github</button>
-        </form>
+        </form> */}
         <LoginForm />  
       </div>
      

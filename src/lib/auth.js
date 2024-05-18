@@ -7,17 +7,22 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient()
 const login = async (credentials) => {
+  console.log("printing credentials",credentials)
+  console.log("email",credentials.email)
+  console.log("password",credentials.password)
   try {
-    
     const user = await  prisma.user.findUnique({
     where: {
             email: credentials.email,
         },
         select: {
         email: true,
+        password:true,
+        isAdmin:true
         },
            
     })
+    console.log("user full information",user)
 
     if (!user) throw new Error("Wrong credentials!");
 
