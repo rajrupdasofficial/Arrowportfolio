@@ -7,18 +7,18 @@
 .container input,
 .container select {
   padding: 20px;
-  background-color: var(--bgSoft);
+  background-color: slategray;
   border: none;
   border-radius: 5px;
-  color: var(--textColor);
+  color: white;
 }
 
 .container button {
   padding: 20px;
   cursor: pointer;
-  background-color: var(--btn);
+  background-color: slategray;
   border: none;
   border-radius: 5px;
-  color: var(--textColor);
+  color: white;
   font-weight: bold;
 }

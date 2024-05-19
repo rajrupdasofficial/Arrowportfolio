@@ -14,9 +14,9 @@ const AdminPostForm = ({ userId }) => {
       <input type="hidden" name="userId" value={userId} />
       <input type="text" name="title" placeholder="Title" />
       <input type="text" name="slug" placeholder="slug" />
-      <input type="text" name="img" placeholder="img" />
-      {/* <textarea type="text" name="desc" placeholder="desc" rows={10} /> */}
-      {/* <Tiptap/> */}
+      {/* <input type="text" name="img" placeholder="img" /> */}
+      <input type="file" name="img"  placeholder="upload image" />
+      <textarea name="desc" id="desc" cols={10} rows={10}></textarea>
       <button>Add</button>
       {state?.error}
     </form>

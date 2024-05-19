@@ -3,24 +3,101 @@ import bcrypt from "bcrypt"
 import {auth,signIn,signOut} from "@/lib/auth"
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { S3 } from "@aws-sdk/client-s3";
 
 const prisma = new PrismaClient()
 
 
 //add post
+const s3 = new S3({
+  region: 'auto',
+  endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  accessKeyId: `${process.env.R2_ACCESS_KEY_ID}`,
+  secretAccessKey: `${process.env.R2_SECRET_ACCESS_KEY}`,
+  signatureVersion: 'v4',
+});
+
 export const addPost=async(prevState,formData)=>{
-  const {title,desc,slug,img,userId}=Object.fromEntries(formData);
-  console.log(title)
-  console.log(desc);
-  console.log(slug)
-  console.log(img)
-  console.log(userId)
+  const {title,desc,slug,userId}=Object.fromEntries(formData);
+  const imageData=formData.get('img')
+  console.log(imageData)
+  
+  try{
+    const uploadFile = await s3.putObject({
+      Bucket: '',
+      Key: imageData.name,
+      Expires: 60,
+    });
+    console.log(uploadFile)
+    if(uploadFile){
+      console.log("success")
+    }else{
+      console.log("error")
+    }
+
+  }catch(err){
+    console.log(err)
+  }
+
+
+  // try{
+  //   const signedUrl = await getSignedUrl(
+  //     r2,
+  //     new PutObjectCommand({
+  //       Bucket:process.env.R2_BUCKET_NAME,
+  //       Key:'fdfsdfhsdf.hfskjdfjskdhf.trct',
+  //     }),  
+  //     { expiresIn: 60 }
+  //   )
+  //   console.log(signedUrl)
+  //   if(signedUrl){
+  //     console.log("operation done upload done")
+  //   }else{
+  //     console.log("error occurred")
+  //   }
+  // }catch(err){
+  //   console.log(err)
+  // }
+
+ 
 }
 
+ // try{
+  // const create_post = await prisma.post.create({
+  //     data:{
+  //       title:title,
+  //       desc:desc,
+  //       slug:slug,
+  //       userId:userId
+  //     }
+  // })
+  // if(create_post){
+  //   console.log("post created successfully")
+  //   return { success: "success  post created successfully" };
+  // }
+  // }catch(err){
+  //   console.log(err)
+  //   return {error:"Failed some error occurred"}
+  // }
 //delete post
 export const deletePost=async(formData)=>{
   const{id}=Object.fromEntries(formData)
-  console.log(id)
+  try{
+      const deletepost = await prisma.post.delete({
+        where:{
+            id:id
+        },
+        select:{
+          id:true
+        }
+
+      })
+      if(deletepost){
+        console.log("post successfully deleted")
+      }
+  }catch(err){
+    console.log("error")
+  }
 }
 
 //add user
