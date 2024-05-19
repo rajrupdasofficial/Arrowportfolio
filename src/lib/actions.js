@@ -40,24 +40,6 @@ export const addPost=async(prevState,formData)=>{
   }
 
 
-  // try{
-  //   const signedUrl = await getSignedUrl(
-  //     r2,
-  //     new PutObjectCommand({
-  //       Bucket:process.env.R2_BUCKET_NAME,
-  //       Key:'fdfsdfhsdf.hfskjdfjskdhf.trct',
-  //     }),  
-  //     { expiresIn: 60 }
-  //   )
-  //   console.log(signedUrl)
-  //   if(signedUrl){
-  //     console.log("operation done upload done")
-  //   }else{
-  //     console.log("error occurred")
-  //   }
-  // }catch(err){
-  //   console.log(err)
-  // }
 
  
 }
