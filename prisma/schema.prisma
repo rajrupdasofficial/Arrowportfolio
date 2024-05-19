@@ -20,6 +20,7 @@ model User {
   password  String
   img       String?
   isAdmin   Boolean  @default(false)
+  posts     Post[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -29,7 +30,8 @@ model Post {
   title     String
   desc      String
   img       String?
-  userId    String
+  userId    BigInt
+  user      User     @relation(fields: [userId], references: [id])
   slug      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

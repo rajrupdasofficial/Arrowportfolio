@@ -2,9 +2,41 @@
 import bcrypt from "bcrypt"
 import {auth,signIn,signOut} from "@/lib/auth"
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient()
 
+
+//add post
+export const addPost=async(prevState,formData)=>{
+  const {title,desc,slug,img,userId}=Object.fromEntries(formData);
+  console.log(title)
+  console.log(desc);
+  console.log(slug)
+  console.log(img)
+  console.log(userId)
+}
+
+//delete post
+export const deletePost=async(formData)=>{
+  const{id}=Object.fromEntries(formData)
+  console.log(id)
+}
+
+//add user
+export const  addUser= async(prevState,formData)=>{
+  const {username,email,password,img}=Object.fromEntries(formData);
+  console.log(username)
+}
+//delete user
+
+export const deleteUser= async(formData)=>{
+  const {id}= Object.fromEntries(formData)
+  console.log(id)
+}
+
+
+//signin user
 
 export const signinuser = async(prevState,formData)=>{
   const {email,password}=Object.fromEntries(formData);
@@ -52,9 +84,6 @@ export const register=async(prevState,formData)=>{
     }else{
         return {error:true}
     }
-    
-    
-
   }catch(err){
     console.log(err)
     return {err:"Something went wrong"}
