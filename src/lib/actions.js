@@ -3,6 +3,7 @@ import bcrypt from "bcrypt"
 import {auth,signIn,signOut} from "@/lib/auth"
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { put } from '@vercel/blob';
 
 const prisma = new PrismaClient()
 
@@ -10,7 +11,13 @@ const prisma = new PrismaClient()
 export const addPost=async(prevState,formData)=>{
   const {title,desc,slug,userId}=Object.fromEntries(formData);
   const imageData=formData.get('img')
+  
  try{
+  
+  const blob =await put(imageData.name,imageData,{
+    access:'public'
+  });
+
   const create_post = await prisma.post.create({
       data:{
         title:title,
@@ -28,6 +35,9 @@ export const addPost=async(prevState,formData)=>{
     console.log(err)
     return {error:"Failed some error occurred"}
   }
+
+  //image
+ 
  
 }
 //show posts
