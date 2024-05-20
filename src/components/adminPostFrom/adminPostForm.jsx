@@ -3,12 +3,15 @@
 import { addPost } from "@/lib/actions";
 import styles from "./adminPostForm.module.css";
 import { useFormState } from "react-dom";
-import Tiptap from "../smarttexteditor/smartEditor";
+import Link from "next/link";
+
 
 const AdminPostForm = ({ userId }) => {
   const [state, formAction] = useFormState(addPost, undefined);
+  
 
   return (
+    <>
     <form action={formAction} className={styles.container}>
       <h1>Add New Post</h1>
       <input type="hidden" name="userId" value={userId} />
@@ -19,7 +22,14 @@ const AdminPostForm = ({ userId }) => {
       <textarea name="desc" id="desc" cols={10} rows={10}></textarea>
       <button>Add</button>
       {state?.error}
+      {state?.success}
     </form>
+    <hr />
+     <Link href="/admin/showposts" className="bg-blue-300 mt-10">
+      Show All the posts
+     </Link>
+     
+     </>
   );
 };
 

@@ -3,82 +3,55 @@ import bcrypt from "bcrypt"
 import {auth,signIn,signOut} from "@/lib/auth"
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { S3 } from "@aws-sdk/client-s3";
 
 const prisma = new PrismaClient()
 
 
-//add post
-const s3 = new S3({
-  region: 'auto',
-  endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  accessKeyId: `${process.env.R2_ACCESS_KEY_ID}`,
-  secretAccessKey: `${process.env.R2_SECRET_ACCESS_KEY}`,
-  signatureVersion: 'v4',
-});
-
 export const addPost=async(prevState,formData)=>{
   const {title,desc,slug,userId}=Object.fromEntries(formData);
   const imageData=formData.get('img')
-  console.log(imageData)
-  
-  try{
-    const uploadFile = await s3.putObject({
-      Bucket: '',
-      Key: imageData.name,
-      Expires: 60,
-    });
-    console.log(uploadFile)
-    if(uploadFile){
-      console.log("success")
-    }else{
-      console.log("error")
-    }
-
+ try{
+  const create_post = await prisma.post.create({
+      data:{
+        title:title,
+        desc:desc,
+        slug:slug,
+        img:imageData.name,
+        userId:userId
+      }
+  })
+  if(create_post){
+    console.log("post created successfully")
+    return { success: "success  post created successfully" };
+  }
   }catch(err){
     console.log(err)
+    return {error:"Failed some error occurred"}
   }
-
-
-
  
 }
+//show posts
 
- // try{
-  // const create_post = await prisma.post.create({
-  //     data:{
-  //       title:title,
-  //       desc:desc,
-  //       slug:slug,
-  //       userId:userId
-  //     }
-  // })
-  // if(create_post){
-  //   console.log("post created successfully")
-  //   return { success: "success  post created successfully" };
-  // }
-  // }catch(err){
-  //   console.log(err)
-  //   return {error:"Failed some error occurred"}
-  // }
+
 //delete post
 export const deletePost=async(formData)=>{
   const{id}=Object.fromEntries(formData)
+  console.log("post id",id)
   try{
       const deletepost = await prisma.post.delete({
         where:{
-            id:id
+            uid:id
         },
-        select:{
-          id:true
-        }
-
       })
+      console.log("delete post command ",deletepost)
       if(deletepost){
         console.log("post successfully deleted")
+
+      }else{
+        console.log("already been deleted")
       }
   }catch(err){
-    console.log("error")
+    console.log("error",err)
   }
 }
 
@@ -101,6 +74,7 @@ export const signinuser = async(prevState,formData)=>{
   const {email,password}=Object.fromEntries(formData);
   try {
     await signIn("credentials",{email,password})
+    return {success:"Loggedin successfully"}
   }catch(err){
     console.log(err)
     if (err.message.includes("CredentialsSignin")) {

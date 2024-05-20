@@ -9,7 +9,7 @@ const LoginForm = () => {
     <form className={styles.form} action={formAction}>
       <input type="email" placeholder="email" name="email" />
       <input type="password" placeholder="password" name="password" />
-      <button>Login</button>
+      <button id="login" name="login" type="submit">Login</button>
       {state?.error}
       {/* <Link href="/register">
         Donot have an account? <b>Register</b>

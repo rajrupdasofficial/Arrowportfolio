@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id        BigInt   @id @default(autoincrement())
+  uid       BigInt   @id @default(autoincrement())
   username  String   @unique
   email     String   @unique
   password  String
@@ -25,7 +25,7 @@ model User {
 }
 
 model Post {
-  id        BigInt   @id @default(autoincrement())
+  uid       BigInt   @id @default(autoincrement())
   title     String
   desc      String
   img       String?
