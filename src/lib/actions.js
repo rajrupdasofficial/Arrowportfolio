@@ -10,7 +10,9 @@ const prisma = new PrismaClient()
 
 
 export const addPost=async(prevState,formData)=>{
+
   const {title,category,desc,slug,userId}=Object.fromEntries(formData);
+
   console.log("unique user id is",userId)
   const imageData=formData.get('img')
   
