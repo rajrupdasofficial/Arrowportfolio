@@ -8,7 +8,7 @@ export default async function sitemap() {
   const baseUrl = url;
     const posts = await prisma.post.findMany();
     const postUrls=posts.map((post)=>({
-      url:`${baseUrl}/${post.category}/${post.slug}`,
+      url:`${baseUrl}/blog/${post.category}/${post.slug}`,
       lastModified:post.updatedAt,
       changeFrequency:"always",
       priority:1
