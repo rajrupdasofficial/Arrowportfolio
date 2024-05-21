@@ -27,12 +27,13 @@ export const generateMetadata = async ({ params }) => {
 
 const SinglePostPage = async ({ params }) => {
     noStore()
-  const { slug } = params;
-
+  const { slug,category } = params;
+  console.log(slug,category
+  )
   //**FETCH DATA WITH AN API**
   // const post = await getData(slug);
   //**FETCH DATA WITHOUT AN API**
-  const post = await getPost(slug);
+  const post = await getPost(slug,category);
   const storage = getStorage(firebase_config);
 
   const fetchImage = async (img) => {
