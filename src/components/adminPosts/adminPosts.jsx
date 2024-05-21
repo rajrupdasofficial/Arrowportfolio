@@ -2,22 +2,45 @@ import { getPosts } from "@/lib/data";
 import styles from "./adminPosts.module.css";
 import Image from "next/image";
 import { deletePost } from "@/lib/actions";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { firebase_config } from "../../../util/firebase";
+import Link from "next/link";
+
 
 const AdminPosts = async () => {
   const posts = await getPosts();
+  const storage = getStorage(firebase_config);
+
+    posts.map((p)=>{
+
+    })
+
+
+  const fetchImage = async (img) => {
+    const downloadURL = await getDownloadURL(ref(storage, img));
+    return downloadURL;
+  };
+  
   return (
     <div className={styles.container}>
       <h1>Posts</h1>
-      {posts.map((p) => (
+      <Link href="/admin" className="bg-blue-500">
+        go to create post
+    </Link>
+      {posts.map(async(p) => (
         <div className={styles.post} key={p.uid}>
           <div className={styles.detail}>
           <span>ID:{p.uid.toString()}</span>
-            {/* <Image
-              src={post.img || "/noAvatar.png"}
-              alt=""
-              width={50}
-              height={50}
-            /> */}
+          {p.img ? (
+              <Image
+                src={ p.img? await fetchImage(p.img) : ''} 
+                alt={p.title}
+                width={50}
+                height={50}
+              />
+            ) : (
+              <Image src="/noAvatar.png" alt="" width={50} height={50} />
+            )}
             <span className={styles.postTitle}>{p.title}</span>
             <span > DESC:{p.desc}</span>
           <span>USERid:{p.userId} </span>
@@ -28,7 +51,9 @@ const AdminPosts = async () => {
           </form>
         </div>
       ))}
+   
     </div>
+  
   );
 };
 

@@ -3,7 +3,8 @@ import bcrypt from "bcrypt"
 import {auth,signIn,signOut} from "@/lib/auth"
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { put } from '@vercel/blob';
+import { uploadImageToFirebase } from "./firebaselogics";
+import {v4 as uuid4 } from 'uuid'
 
 const prisma = new PrismaClient()
 
@@ -13,17 +14,16 @@ export const addPost=async(prevState,formData)=>{
   const imageData=formData.get('img')
   
  try{
-  
-  const blob =await put(imageData.name,imageData,{
-    access:'public'
-  });
+  const uniqueFilename = `${uuid4()}.${imageData.type.split('/')[1]}`;
+  console.log(uniqueFilename)
+  const firebase_storage_upload = await uploadImageToFirebase(imageData,uniqueFilename)
 
   const create_post = await prisma.post.create({
       data:{
         title:title,
         desc:desc,
         slug:slug,
-        img:imageData.name,
+        img:uniqueFilename,
         userId:userId
       }
   })
@@ -35,8 +35,6 @@ export const addPost=async(prevState,formData)=>{
     console.log(err)
     return {error:"Failed some error occurred"}
   }
-
-  //image
  
  
 }
@@ -53,10 +51,9 @@ export const deletePost=async(formData)=>{
             uid:id
         },
       })
-      console.log("delete post command ",deletepost)
+    
       if(deletepost){
         console.log("post successfully deleted")
-
       }else{
         console.log("already been deleted")
       }
