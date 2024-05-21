@@ -11,7 +11,7 @@ export const getPosts = async () => {
   };
 
 //get posts by slug
-export const getPost=async(slug)=>{
+export const getPost=async(slug,caregory)=>{
     noStore()
     const signlepost= await prisma.post.findUniqueOrThrow({
         where:{
@@ -42,6 +42,7 @@ export const getUser =  async(id)=>{
             uid:id
         },
         select:{
+            uid:true,
             email:true,
             username:true
         }
