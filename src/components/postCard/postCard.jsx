@@ -1,15 +1,25 @@
 import Image from "next/image";
 import styles from "./postCard.module.css";
 import Link from "next/link";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { unstable_noStore as noStore } from 'next/cache';
+import { firebase_config } from "../../../util/firebase";
 
-const PostCard = ({ post }) => {
+const PostCard = async ({ post }) => {
+  noStore()
+  const storage = getStorage(firebase_config);
+
+  const fetchImage = async (img) => {
+    const downloadURL = await getDownloadURL(ref(storage, img));
+    return downloadURL;
+  };
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        {post.img && (
+        { post.img && (
           <div className={styles.imgContainer}>
             <Image
-              src={post.img}
+              src={ post.img? await fetchImage(post.img) : ''}
               alt={post.title}
               fill
               className={styles.img}

@@ -12,8 +12,24 @@ export const getPosts = async () => {
 
 //get posts by slug
 export const getPost=async(slug)=>{
-    const post = ""
-    return post;
+    noStore()
+    const signlepost= await prisma.post.findUniqueOrThrow({
+        where:{
+            slug:slug
+        }, 
+         select:{
+            uid:true,
+            title:true,
+            desc:true,
+            img:true,
+            slug:true,
+            post_user_id:true,
+            updatedAt:true,
+            createdAt:true   
+         }
+    })
+    return signlepost  ;
+    
 }
 
 //get user by id
