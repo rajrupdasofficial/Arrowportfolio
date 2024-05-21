@@ -4,12 +4,16 @@ import { useState } from "react";
 import Image from "next/image";
 import NavLink from "./navLink";
 import { motion } from "framer-motion";
+
+
 const links = [
   { url: "/", title: "Home" },
   { url: "/about", title: "About" },
   {url:"/services",title:"Services"},
   { url: "/portfolio", title: "Portfolio" },
+  {url:'/blog',title:"Blog"},
   { url: "/contact", title: "Contact" },
+
 ];
 
 const NavBar = () => {
@@ -71,6 +75,7 @@ const NavBar = () => {
         {links.map((link) => (
           <NavLink link={link} key={link.title} />
         ))}
+       
       </div>
       {/* Logo */}
       <div className="md:hidden lg:flex xl:w-1/3 xl:justify-center">
