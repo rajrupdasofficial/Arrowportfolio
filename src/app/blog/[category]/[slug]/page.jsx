@@ -34,7 +34,6 @@ const SinglePostPage = async ({ params }) => {
   // const post = await getData(slug);
   //**FETCH DATA WITHOUT AN API**
   const post = await getPost(slug,category);
-
   const storage = getStorage(firebase_config);
 
   const fetchImage = async (img) => {
