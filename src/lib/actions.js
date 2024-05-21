@@ -11,20 +11,28 @@ const prisma = new PrismaClient()
 
 export const addPost=async(prevState,formData)=>{
   const {title,desc,slug,userId}=Object.fromEntries(formData);
+  console.log("unique user id is",userId)
   const imageData=formData.get('img')
   
  try{
   const uniqueFilename = `${uuid4()}.${imageData.type.split('/')[1]}`;
-  console.log(uniqueFilename)
   const firebase_storage_upload = await uploadImageToFirebase(imageData,uniqueFilename)
 
+  const get_user_id=await prisma.user.findUniqueOrThrow({
+    where:{
+      email:userId
+    },
+    select:{
+      uid:true
+    }
+  })
   const create_post = await prisma.post.create({
       data:{
         title:title,
         desc:desc,
         slug:slug,
         img:uniqueFilename,
-        userId:userId
+        post_user_id:get_user_id.uid
       }
   })
   if(create_post){
@@ -90,11 +98,9 @@ export const signinuser = async(prevState,formData)=>{
     throw err;
   }
 };
-export const register=async(prevState,formData)=>{
-  const {username,email,password,img,passwordRepeat}=Object.fromEntries(formData)
-  if (password!==passwordRepeat){
-    return {error:"Passwords not matched"}
-  }
+export const userregister=async(prevState,formData)=>{
+  const {username,email,password}=Object.fromEntries(formData)
+ 
   try{
     const user = await prisma.user.findUnique({
       where: {

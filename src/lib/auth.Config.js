@@ -7,14 +7,14 @@ export const authConfig = {
       // FOR MORE DETAIL ABOUT CALLBACK FUNCTIONS CHECK https:/login/next-auth.js.org/configuration/callbacks
       async jwt({ token, user }) {
         if (user) {
-          token.id = user.uid;
+          token.id = user.id;
           token.isAdmin = user.isAdmin;
         }
         return token;
       },
       async session({ session, token }) {
         if (token) {
-          session.user.uid = token.id;
+          session.user.id = token.id;
           session.user.isAdmin = token.isAdmin;
         }
         return session;

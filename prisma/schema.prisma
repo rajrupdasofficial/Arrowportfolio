@@ -25,12 +25,12 @@ model User {
 }
 
 model Post {
-  uid       BigInt   @id @default(autoincrement())
-  title     String
-  desc      String
-  img       String?
-  userId    String
-  slug      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  uid          BigInt   @id @default(autoincrement())
+  title        String
+  desc         String
+  img          String?
+  slug         String   @unique
+  post_user_id BigInt?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

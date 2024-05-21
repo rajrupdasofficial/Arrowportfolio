@@ -1,12 +1,12 @@
 "use client";
-import { register } from "@/lib/actions";
+import {  userregister } from "@/lib/actions";
 import styles from "./registerForm.module.css";
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 const RegisterForm = () => {
-  const [state, formAction] = useFormState(register, undefined);
+  const [state, formAction] = useFormState(userregister, undefined);
   const router = useRouter();
   useEffect(() => {
     state?.success && router.push("/login");

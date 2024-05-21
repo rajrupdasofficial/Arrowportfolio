@@ -5,16 +5,13 @@ import { deletePost } from "@/lib/actions";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { firebase_config } from "../../../util/firebase";
 import Link from "next/link";
+import { unstable_noStore as noStore } from 'next/cache';
 
 
-const AdminPosts = async () => {
+const AdminPosts =  async () => {
+  noStore()
   const posts = await getPosts();
   const storage = getStorage(firebase_config);
-
-    posts.map((p)=>{
-
-    })
-
 
   const fetchImage = async (img) => {
     const downloadURL = await getDownloadURL(ref(storage, img));
