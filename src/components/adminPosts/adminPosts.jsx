@@ -40,7 +40,10 @@ const AdminPosts =  async () => {
             )}
             <span className={styles.postTitle}>{p.title}</span>
             <span > DESC:{p.desc}</span>
-          <span>USERid:{p.userId} </span>
+          <span>userid:{p.userId} </span>
+          <span>category:{p.category}</span>
+          {/* <span>created:{p.createdAt}</span>
+          <span>updated:{p.updatedAt}</span> */}
           </div>
           <form  action={deletePost}>
             <input type="hidden" name="id" value={p.uid.toString()} />

@@ -1,15 +1,21 @@
+import { PrismaClient } from "@prisma/client";
+import { unstable_noStore as noStore } from 'next/cache';
+const prisma= new PrismaClient()
+
 export default async function sitemap() {
+  noStore()
   const url = "https://www.webstackpros.net";
   const baseUrl = url;
-  //   const posts = await fetchBlogPosts();
-  //   const postUrls = posts.map((post: BlogPost) => ({
-  //     url: `${baseUrl}/${post.category}/${post.slug}`,
-  //     lastModified: post.updated,
-  //     changeFrequency: "always",
-  //     priority: 1,
-  //   }));
-
+    const posts = await prisma.post.findMany();
+    const postUrls=posts.map((post)=>({
+      url:`${baseUrl}/${post.category}/${post.slug}`,
+      lastModified:post.updatedAt,
+      changeFrequency:"always",
+      priority:1
+    }))
+   
   return [
+
     { url: baseUrl, lastModified: new Date(), changeFrequency: "monthly" },
     {
       url: `${baseUrl}/about`,
@@ -31,6 +37,6 @@ export default async function sitemap() {
       lastModified: new Date(),
       changeFrequency: "yearly",
     },
-    // ...postUrls,
+     ...postUrls,
   ];
 }

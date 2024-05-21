@@ -10,7 +10,9 @@ const prisma = new PrismaClient()
 
 
 export const addPost=async(prevState,formData)=>{
-  const {title,desc,slug,userId}=Object.fromEntries(formData);
+
+  const {title,category,desc,slug,userId}=Object.fromEntries(formData);
+
   console.log("unique user id is",userId)
   const imageData=formData.get('img')
   
@@ -29,6 +31,7 @@ export const addPost=async(prevState,formData)=>{
   const create_post = await prisma.post.create({
       data:{
         title:title,
+        category:category,
         desc:desc,
         slug:slug,
         img:uniqueFilename,

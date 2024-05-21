@@ -33,8 +33,8 @@ const PostCard = async ({ post }) => {
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
         <p className={styles.desc}>{post.body}</p>
-        <Link className={styles.link} href={`/blog/${post.slug}`}>
-          READ MORE
+        <Link className={styles.link} href={`/blog/${post.category}/${post.slug}`}>
+          KNOW MORE
         </Link>
       </div>
     </div>
