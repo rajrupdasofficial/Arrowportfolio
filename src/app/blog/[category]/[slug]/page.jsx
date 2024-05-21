@@ -3,7 +3,7 @@ import styles from "./singlepost.module.css";
 import Image from "next/image";
 import { Suspense } from "react";
 import { getPost } from "@/lib/data";
-import { firebase_config } from "../../../../util/firebase";
+import { firebase_config } from "../../../../../util/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { unstable_noStore as noStore } from 'next/cache';
 
@@ -49,7 +49,7 @@ const SinglePostPage = async ({ params }) => {
         <div className={styles.detail}>
           {/* user container */}
           <Suspense fallback={<div>Loading...</div>}>
-            <PostUser userId={post?.userId} />
+            <PostUser userId={post?.post_user_id} />
           </Suspense>
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>

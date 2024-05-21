@@ -27,6 +27,7 @@ model User {
 model Post {
   uid          BigInt   @id @default(autoincrement())
   title        String
+  category     String?
   desc         String
   img          String?
   slug         String   @unique
