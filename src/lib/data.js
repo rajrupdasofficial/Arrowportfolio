@@ -33,6 +33,19 @@ export const getPost=async(slug,caregory)=>{
     
 }
 
+//all contact details
+
+export const allContact = async()=>{
+    noStore()
+    const allcontacts= await  prisma.contact.findMany()
+    if(allcontacts){
+        return allcontacts
+    }else{
+        console.log("Database serverless error occurred")
+    }
+    
+}
+
 //get user by id
 
 export const getUser =  async(id)=>{
