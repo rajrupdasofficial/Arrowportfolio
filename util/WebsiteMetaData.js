@@ -3,7 +3,7 @@ export const websiteMetadata = {
   author: "Webstackpros",
   headerTitle: "Webstackpros network",
   description:
-    "innovative Tech Solutions for a connected world",
+    "Welcome to our digital canvas, where innovation and creativity converge. With a keen eye for aesthetics and a mastery of code, our portfolio showcases a diverse collection of projects that reflect our commitment to excellence.",
   language: "en-us",
   theme: "system", // system, dark or light
   siteUrl: "https://www.webstackpros.net", // your website URL
