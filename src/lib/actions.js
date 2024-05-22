@@ -49,7 +49,21 @@ export const addPost=async(prevState,formData)=>{
  
  
 }
-//show posts
+//save contact from
+export const saveContact=async(prevState,formData)=>{
+    const {user_message,user_email}= Object.fromEntries(formData);
+    const savecontactdata = await prisma.contact.create({
+      data:{
+        user_message:user_message,
+       user_email: user_email
+      }
+    })
+    if(savecontactdata){
+      return {success:"Thank you! we will touch with you shortly"}
+    }else{
+      return{error:"Sorry we cannot process this data at the moment"}
+    }
+}
 
 
 //delete post

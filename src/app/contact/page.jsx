@@ -1,37 +1,12 @@
 "use client";
+import { saveContact } from "@/lib/actions";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
-
+import { useRef } from "react";
+import { useFormState } from "react-dom";
 const ContactPage = () => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [state, formAction] = useFormState(saveContact, undefined);
   const text = "Say Hello";
-
   const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setError(false);
-    setSuccess(false);
-
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID,
-        form.current,
-        process.env.NEXT_PUBLIC_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setSuccess(true);
-          form.current.reset();
-        },
-        () => {
-          setError(true);
-        }
-      );
-  };
 
   return (
     <motion.div
@@ -61,7 +36,7 @@ const ContactPage = () => {
         </div>
         {/* FORM CONTAINER */}
         <form
-          onSubmit={sendEmail}
+          action={formAction}
           ref={form}
           className="h-1/2 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24">
           <span>Hello Webstack,</span>
@@ -80,16 +55,8 @@ const ContactPage = () => {
           <button className="bg-purple-200 rounded font-semibold text-gray-600 p-4">
             Send
           </button>
-          {success && (
-            <span className="text-green-600 font-semibold">
-              Your message has been sent successfully!
-            </span>
-          )}
-          {error && (
-            <span className="text-red-600 font-semibold">
-              Something went wrong!
-            </span>
-          )}
+          {state?.error}
+          {state?.success}
         </form>
       </div>
     </motion.div>

@@ -17,8 +17,8 @@ import { unstable_noStore as noStore } from 'next/cache';
 //   return res.json();
 // };
 export const generateMetadata = async ({ params }) => {
-  const { slug } = params;
-  const post = await getPost(slug);
+  const { slug,category } = params;
+  const post = await getPost(slug,category);
   return {
     title: post.title,
     description: post.desc,
@@ -28,8 +28,6 @@ export const generateMetadata = async ({ params }) => {
 const SinglePostPage = async ({ params }) => {
     noStore()
   const { slug,category } = params;
-  console.log(slug,category
-  )
   //**FETCH DATA WITH AN API**
   // const post = await getData(slug);
   //**FETCH DATA WITHOUT AN API**
