@@ -9,7 +9,7 @@ export const websiteMetadata = {
   siteUrl: "https://www.webstackpros.net", // your website URL
   siteLogo: "/favicon.ico",
   socialBanner: "/heros2.png", // add social banner in the public folder
-  email: "websatckprosnetwork@gmail.com",
+  email: "info@webstackpros.net",
   facebook: "https://www.facebook.com/profile.php?id=61558804966278",
   instgram:"https://www.instagram.com/webstackprosofficial/",
   youtube: "https://youtube.com/webstackprosnetwork",

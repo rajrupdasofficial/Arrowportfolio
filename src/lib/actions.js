@@ -9,10 +9,9 @@ import {v4 as uuid4 } from 'uuid'
 const prisma = new PrismaClient()
 
 
-export const addPost=async(prevState,formData)=>{
+export const addPost=async(formData)=>{
 
   const {title,category,desc,slug,userId}=Object.fromEntries(formData);
-
   console.log("unique user id is",userId)
   const imageData=formData.get('img')
   
