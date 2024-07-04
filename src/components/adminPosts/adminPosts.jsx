@@ -6,7 +6,8 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { firebase_config } from "../../../util/firebase";
 import Link from "next/link";
 import { unstable_noStore as noStore } from 'next/cache';
-
+import DOMPurify from "isomorphic-dompurify";
+import { marked } from "marked";
 
 const AdminPosts = async () => {
   noStore()
@@ -16,6 +17,13 @@ const AdminPosts = async () => {
   const fetchImage = async (img) => {
     const downloadURL = await getDownloadURL(ref(storage, img));
     return downloadURL;
+  };
+  // const truncContent = (content) => content.substring(0, 5);
+
+  const truncateAndParseMarkdown = (str, n) => {
+    const truncatedContent = str.length > n ? str.substr(0, n - 1) + '...' : str;
+    const parsedContent = marked(truncatedContent);
+    return parsedContent;
   };
 
   return (
@@ -39,7 +47,12 @@ const AdminPosts = async () => {
               <Image src="/noAvatar.png" alt="" width={50} height={50} />
             )}
             <span className={styles.postTitle}>{p.title}</span>
-            <span dangerouslySetInnerHTML={{ __html: p.desc }} />
+            {/* <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(truncateAndParseMarkdown(p.desc, 10)) }} /> */}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(marked.parse(p.desc)),
+              }}
+            />
             <span>userid:{p.userId} </span>
             <span>category:{p.category}</span>
             {/* <span>created:{p.createdAt}</span>

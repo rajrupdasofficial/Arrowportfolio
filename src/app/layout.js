@@ -58,6 +58,14 @@ export default function RootLayout({ children }) {
         ) : null}
 
         <ClarityMS />
+    
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <hr className="border-gray-400 border-1 my-4"/>
         <Footer/>
       </body>
